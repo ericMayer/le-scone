@@ -1,0 +1,19 @@
+/* Arquivo de reset das propriedades */
+
+h1, h2, h3, body, p, ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none; /* tirando a bolinha padrão que veem do lado da lista */
+}
+
+a {
+    text-decoration: none; /* tirando o sublinhado dos links */
+}
+
+img {
+    display: block; /* passando imagem para display block para não pegar a margem que por padrão é adicionada nas imagens nos navegadores */
+    max-width: 100%; /* maximo width: 100% para que a imagem possa diminuir automaticamente */
+}

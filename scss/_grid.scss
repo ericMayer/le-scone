@@ -1,0 +1,44 @@
+// Variavéis esse tipo de comentário só aparece no scss no css irá sumir
+
+$colunas: 12;
+$gutter: 20px; /* margem da esquerda e direita */
+$large-device: 1200px; // tamanho padrão que seria no computador
+$medium-device: 760px; // tamanho medio que seria mais em tablets
+$small-device: 480px; // tamanho pequeno que seria mais em celulares
+
+/* Box Sizing */
+
+*, *::before, *::after { /* será em todos os elementos do html, inclusive os before e after */
+    /* não soma os valores por exemplo da borda, padding, margem ao tamanho do total width ou heigth, por exemplo, width: 200px padding:20 será 200px o width, sem o box-sizing: seria 240px; */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box; /* firefox, versões mais antigas */
+    -webkit-box-sizing: border-box; /* chrome e safari versões mais antigas */
+}
+
+// Mixin e media-queries
+
+@mixin d($size) { // mixin dos media-queries
+    // d = device
+    // l = large
+    // m = medium
+    // s == small
+   
+    @if $size == l {
+        @media only screen and (min-width: #{$large-device}) { // necessário colocar a varíavel entre #{}, pois só assim irá pegar o valor correto que é os 1200px
+            @content; // conteúdo será adiciondo quando for chamado o mixin e passado o parâmetro e cair nesse if
+        }
+    }
+
+    @else if $size == m {
+        @media only screen and (min-width: #{$medium-device}) and (max-width: 
+        #{$large-device} - 1) {
+            @content;
+        }
+    }
+    
+    @else if $size == s {
+        @media only screen and (max-width: #{$medium-device} - 1) { 
+            @content;
+        }
+    }
+}

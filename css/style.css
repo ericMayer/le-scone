@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/* margem da esquerda e direita */
+/* Box Sizing */
+/* line 11, ../projetos/le-scone/scss/_grid.scss */
+*, *::before, *::after {
+  /* será em todos os elementos do html, inclusive os before e after */
+  /* não soma os valores por exemplo da borda, padding, margem ao tamanho do total width ou heigth, por exemplo, width: 200px padding:20 será 200px o width, sem o box-sizing: seria 240px; */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  /* firefox, versões mais antigas */
+  -webkit-box-sizing: border-box;
+  /* chrome e safari versões mais antigas */
+}
+
+/*# sourceMappingURL=style.css.map */
