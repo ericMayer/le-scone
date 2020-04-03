@@ -24,21 +24,149 @@ $small-device: 480px; // tamanho pequeno que seria mais em celulares
     // s == small
    
     @if $size == l {
+        // seria igual min-width: 1200px
         @media only screen and (min-width: #{$large-device}) { // necessário colocar a varíavel entre #{}, pois só assim irá pegar o valor correto que é os 1200px
             @content; // conteúdo será adiciondo quando for chamado o mixin e passado o parâmetro e cair nesse if
         }
     }
 
     @else if $size == m {
+        // seria igual min-width: 760px and max-width: 1199
         @media only screen and (min-width: #{$medium-device}) and (max-width: 
-        #{$large-device} - 1) {
+        calc(#{$large-device} - 1px)) { 
             @content;
         }
     }
     
     @else if $size == s {
-        @media only screen and (max-width: #{$medium-device} - 1) { 
+        // seria igual max-width: 759px
+        @media only screen and (max-width: calc(#{$medium-device} - 1px)) { 
             @content;
         }
     }
+}
+
+// Função do Grid
+
+@function grid($coluna, $offset: false) {
+    
+    // pega a coluna que foi passada, por exemplo, 5 e divide pelo total de colunas 12 e depois multiplica por 100% para dar a porcentagem que o grid deverá ocupar na tela
+    $width: $coluna / $colunas * 100%; // +% não deixa por isso foi deixado 100%
+    $resultado: calc(#{$width} - #{$gutter}); // tira o gutter que é margem de 20px do tamanho do grid
+
+    @if $offset == offset {
+        $gutter: $gutter / 2;
+        $resultado: calc(#{$width} + #{$gutter}); // com offset será adicionado um espaço a mais na esquerda para criar uma folga entre os itens, por isso é somado com a metade do gutter
+    }
+    @return $resultado; // returnando o resultado calculado
+}
+
+
+// Classes do grid
+
+@for $i from 1 through $colunas { // fazendo um for que irá começar de 1 e irá até 12
+    .grid-#{$i} { // criando os grid-1, grid-2, grid-3
+        width: grid($i); // o tamanho dele será gerado automática pela função acima
+    }
+}
+
+// Mixin do gutter do grid 
+
+@mixin estrutura-grid {
+    //display: flex; /* será usado o flexbox ao invés de float */
+    //flex-wrap: wrap; /* quando não couber irá quebrar linha */
+    // não será usado o flexbox, pq se não pede o sentido do grid e também de seguir o contéudo do curso
+    //float: left;
+    min-height: 1px; /* colocando min-heigth, pois algumas propriedades precisam ter um mínimo de altura para funcionarem corretamente não quebrarem o layout */
+    margin-left: $gutter / 2;
+    margin-right: $gutter / 2;
+
+    @include d(s) { // para celular
+        width: 100%;
+        //float: none;
+        flex-direction: column; /* no mobile só será usado uma única coluna */
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+
+[class^="grid-"] { /* seletor que seleciona todas as classes do css que começam com grid-, caso colocasse alt selecionaria todas imagens que têm alt */
+    @include estrutura-grid; // chamado o mixin da estrutura do grid
+}
+
+// Classes do offset
+
+@for $i from 1 through $colunas { // fazendo um for que irá começar de 1 e irá até 12
+    .offset-#{$i} { // criando os offset-1, offset-2, offset-3
+        margin-left: grid($i, offset); // o tamanho dele será gerado automática pela função acima
+        @extend %offset; // será gerado com offset-1, offset-2, pois sempre que usa o extend ele vai adicionando uma virgula quando usado várias vezes, por exemplo no laço de repetição
+    }
+}
+
+@include d(s) { // para celular
+    %offset { // criada, porém só irá existir quando usar o @extend
+        margin-left: 0px;
+    }
+
+}
+
+// Mixin de clearfix - não será usado
+
+@mixin clearfix {
+    &::after, &::before {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+// Mixin do container 
+
+@mixin flex-container {
+    display: flex; /* será usado o flexbox ao invés de float */
+    flex-wrap: wrap; /* quando não couber irá quebrar linha */
+    // não será usado o flexbox, pq senão irá perder todo o sentido de usar o grid, pura mentira, dá para utilizar
+    max-width: $large-device; // 1200px
+    margin: 0 auto; // sempre estará alinhado ao centro do container
+    //position: relative;
+
+    @include d(m) {
+        max-width: $medium-device; // 760px
+    }
+
+    @include d(s) {
+        max-width: $small-device; // 480px
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    //@include clearfix;
+}
+
+// Classe container
+
+.flex-container {
+    @include flex-container;
+}
+
+// Mixin de linha
+
+@mixin flex-row { // ainda será avaliado a utilização de row para ficar a margem correta quando colocar grid dentro de grid, talvez não seja necessário por estar usando o flexbox
+    //position: relative;
+    margin-right: -$gutter / 2;
+    margin-left: -$gutter / 2;
+    @include d(s) {
+        margin-right: 0;
+        margin-left: 0;
+    }
+    //@include clearfix;
+}
+
+.row {
+    @include flex-row;
+}
+
+div {
+    background: rgba(0, 0, 0, .4);
+    min-height: 100px !important;
+    margin-bottom: 20px;
 }

@@ -1,0 +1,48 @@
+.flex {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex; /* iniciando design do flexbox, dizendo que os itens filhos serão flex*/
+    flex-wrap: wrap; /* quando o item ficar muito pequeno será quebrado linha */
+}
+
+.flex-row {
+    margin-right: -10px;
+    margin-left: -10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-item-4, .flex-item-6, .flex-item-8 {
+    margin-right: 10px;
+    margin-left: 10px;
+    align-self: flex-start; /* sempre irá começar alinhado ao início */
+}
+
+.flex-item-4 { /* 100 (porcentagem total) / 12 (colunas do grid) * 4 (colunas que o item ocupa)   */
+    flex: 0 0 calc(33.333% - 20px); /* definido capacidade de aumentar como 0, encolher como 0 e valor base como porcentagem do container flex-grow: 1; flex-shrink: 1;  flex-basis: 0*/
+    max-width: calc(33.333% - 20px); /* caso ocorra uma falha no flex item não irá quebrar o layout */
+}
+
+.flex-item-6 { /* 100 (porcentagem total) / 12 (colunas do grid) * 6 (colunas que o item ocupa)   */
+    flex: 0 0 calc(50% - 20px); /* definido capacidade de aumentar como 0, encolher como 0 e valor base como porcentagem do container flex-grow: 1; flex-shrink: 1;  flex-basis: 0*/
+    max-width: calc(50% - 20px); /* caso ocorra uma falha no flex item não irá quebrar o layout */
+}
+
+.flex-item-8 { /* 100 (porcentagem total) / 12 (colunas do grid) * 8 (colunas que o item ocupa)   */
+    flex: 0 0 calc(66.666% - 20px); /* definido capacidade de aumentar como 0, encolher como 0 e valor base como porcentagem do container flex-grow: 1; flex-shrink: 1;  flex-basis: 0*/
+    max-width: calc(66.666% - 20px); /* caso ocorra uma falha no flex item não irá quebrar o layout */
+}
+
+@media only screen and (max-width: 739px) {
+    .flex {
+        max-width: 300px;
+        flex-direction: column; /* será organizado o conteúdo como coluna para que ocorra a quebra */
+    }
+
+    .flex-item-4, .flex-item-8 {
+        margin-right: 0px;
+        margin-left: 0px;
+        align-self: auto; /* o alinhamento será automático */
+        max-width: 100%; /* irá ocupar o máximo possível do width */
+    }
+}
