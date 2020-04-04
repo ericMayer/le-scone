@@ -10,22 +10,177 @@
 
         <link rel="shortcut icon" href="favicon.ico"> <!-- ícone para aparecer ao lado esquerdo do title -->
 
+        <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|PT+Mono&display=swap" rel="stylesheet">
+
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
 
     <body>
-       <div class="container">
-           <div class="grid-12"></div>
-           <div class="grid-6">
-           
+       
+        <main class="flex-container introducao">
 
-           </div>
-           <div class="grid-6"></div>
-           <div class="grid-4">
+            <div class="flex-item-5">
+                
+                
+                <img class="introducao-logo" src="img/lescone.png" alt="Le Scone - Logo"  />
+                
+
+                <div class="introducao-info">
+                    <p>
+                        De Seg. à Sab. 
+                        <span class="introducao-aberto"></span>
+                        <br />
+                        das 7h às 18h
+                    </p>
+                    <p>
+                        Cidade Nova Jacareí, 100
+                        <br />
+                        Jacareí - SP
+                    </p>
+
+                    
+                </div>
+
+                <p class="introducao-telefone">+55 12 3901-2020</p>
+            </div>
+
+            <div class="flex-item-7">
+                <!--a class de foto não pode ser acima no flex-item-7, pois se não irá pegar o tamanho do flex-item e não da imagem -->
+                <img class="introducao-foto" src="img/foto.jpg" alt="Foto de Le Scone" />
+            </div>
+
+        </main>
+
+        <section class="flex-container cardapio">
             
-           </div>
-           <div class="grid-4"></div>
-           <div class="grid-4"></div>
-       </div>
+            <h1 class="flex-item-5 titulo"> 
+                Menu
+            </h1>
+
+            <div class="flex-item-7"> <!-- offset-1 está sendo tentado outra abordagem que é aumentar em uma coluna no flex-item anterior ao que usaria o offset -->
+
+                <div class="cardapio-prato">
+
+                    <img src="img/prato-1.png" alt="Imagem de um prato de entrada do Le Scone" />
+                    <h2>Entradas</h2>
+
+                    <ul>
+                        <li>
+                            <span> <sup> R$ </sup> 5,00 </span> 
+                            Ovos Mexidos
+                        </li>
+
+                        <li>
+                            <span> <sup> R$ </sup> 12,00 </span> 
+                            Scones de Frutas
+                        </li>
+
+                        <li>
+                            <span> <sup> R$ </sup> 15,00 </span> 
+                            Joelho de Queijo
+                        </li>
+
+                        <li>
+                            <span> <sup> R$ </sup> 3,00 </span> 
+                            Coxinha de Frango
+                        </li>
+
+                        <li>
+                            <span> <sup> R$ </sup> 1,25 </span> 
+                            Presunto Cozido
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="cardapio-prato">
+
+                    <img src="img/prato-2.png" alt="Imagem de um prato principal do Le Scone" />
+                    <h2>Pratos Principais</h2>
+
+                    <ul>
+                        <li>
+                            <span> <sup> R$ </sup> 22,50 </span> 
+                            Risoto de Camarão
+                        </li>
+
+                        <li>
+                            <span> <sup> R$ </sup> 15,00 </span> 
+                            Penne com Queijo
+                        </li>
+
+                        <li>
+                            <span> <sup> R$ </sup> 10,00 </span> 
+                            Feijoada
+                        </li>
+
+                        <li>
+                            <span> <sup> R$ </sup> 13,00 </span> 
+                            Costela ao Molho
+                        </li>
+
+                        <li>
+                            <span> <sup> R$ </sup> 8,90 </span> 
+                            Medalhão de Frango
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="flex-container contato">
+            <h1 class="flex-item-5 titulo">Contato</h1>
+
+            <div class="flex-item-7 contato-form">
+                <form>
+                    <label for="txtNome">Nome</label>
+                    <input type="text" name="nome" id="txtNome">
+
+                    <div class="flex-row"> <!-- Com isso o conteúdo não irá ficar desalinhado, pois não irá adicionar outra margem de novo -->
+                        
+                        <div class="flex-item-7 ">
+                            <label for="txtEmail">E-mail</label>
+                            <input type="email" name="email" id="txtEmail">
+                        </div>
+
+                        <div class="flex-item-5">
+                            <label for="txtTelefone">Telefone</label>
+                            <input type="text" name="telefone" id="txtTelefone">
+                        </div>
+
+                    </div>
+
+                    <label for="txtMensagem">Mensagem</label>
+                    <textarea name="mensagem" id="txtMensagem"></textarea>
+
+                    <input class="button" type="button" value="Enviar" name="enviar" id="btnEnviar">
+                </form>
+
+                <div class="contato-info">
+                    <p>contato@lescone.com ////</p>
+                    <p>+55 12 3901-2020 ////</p>
+                </div>
+
+                <a href="#" class="contato-mapa">
+                    <img src="img/map.png" alt="Localização do Le Scone" />
+                </a>
+            </div>
+        </section>
+
+        <footer>
+
+            <div class="flex-container">
+                <p>Le Scone © 1989 - 2016. Alguns direitos reservados</p>
+            
+
+                <a href="https://github.com/ericMayer" target="_blank">
+                    <img src="img/lescone-icone.png" alt="Le Scone Ícone da Marca" />
+                </a>
+
+            </div>
+
+        </footer>
+
     </body>
 </html>

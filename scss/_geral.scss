@@ -1,0 +1,40 @@
+body {
+    background-color: $cor-principal;
+    border: 10px solid $cor-moldura;
+    color: $cor-texto-e-linhas;
+    @include d(s) { 
+        /* no mobile não é necessário a borda */
+        border: none;
+    }
+}
+
+img {
+    display: block; /* passando imagem para display block para não pegar a margem que por padrão é adicionada nas imagens nos navegadores */
+    max-width: 100%; /* maximo width: 100% para que a imagem possa diminuir automaticamente */
+}
+
+p {
+    @include tipo-1(18);
+}
+
+.titulo {
+    @include tipo-1(18);
+    text-transform: uppercase;
+    @include d(s) {
+        /* No responsivo é necessário uma margem para não ficar grudado o conteúdo */
+        margin-bottom: 40px;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        float: right;
+        width: 75%;
+        height: 2px;
+        background: $cor-texto-e-linhas;
+        margin-top: 13px;
+        @include d(m) {
+            width: 60%;
+        }
+    }
+}

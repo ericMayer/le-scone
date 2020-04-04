@@ -13,7 +13,6 @@ a {
     text-decoration: none; /* tirando o sublinhado dos links */
 }
 
-img {
-    display: block; /* passando imagem para display block para não pegar a margem que por padrão é adicionada nas imagens nos navegadores */
-    max-width: 100%; /* maximo width: 100% para que a imagem possa diminuir automaticamente */
+h1, h2 {
+    font-weight: normal;
 }

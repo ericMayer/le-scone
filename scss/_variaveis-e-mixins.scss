@@ -1,0 +1,40 @@
+// Cores
+
+$cor-moldura: #cbc6b9;
+$cor-principal: #edece4;
+$cor-texto: #988c77;
+$cor-texto-e-linhas: #2a2426;
+$cor-aberto: #1ab912;
+
+// Fontes
+
+$fonte-principal: 'PT Mono', monospace;
+$fonte-secundaria: 'Aref Ruqaa', serif;
+
+
+@function em($pixel, $contexto: 16) { // função para converter pixel em em, poderia ser usado em direto também
+    @return $pixel / $contexto + em;
+}
+
+@mixin tipo-1($size) {
+    font-family: $fonte-principal;
+    @if $size == 18 {
+        font-size: em(18);
+        line-height: em(30, 18); // sempre que o font-size for definido o line-height irá deixar de pegar os 16px padrão do browser como contexto e irá pegar o tamanho do font-size no caso os 18px
+    }
+}
+
+@mixin tipo-2($size) {
+    font-family: $fonte-secundaria;
+    @if $size == 18 {
+        font-size: em(18);
+        line-height: em(30, 18); // sempre que o font-size for definido o line-height irá deixar de pegar os 16px padrão do browser como contexto e irá pegar o tamanho do font-size no caso os 18px
+    }
+
+    @else if $size == 24 {
+        font-size: em(24);
+        line-height: em(30, 24); // sempre que o font-size for definido o line-height irá deixar de pegar os 16px padrão do browser como contexto e irá pegar o tamanho do font-size no caso os 18px
+    }
+}
+
+

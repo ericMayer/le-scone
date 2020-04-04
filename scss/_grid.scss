@@ -48,7 +48,7 @@ $small-device: 480px; // tamanho pequeno que seria mais em celulares
 
 // Função do Grid
 
-@function grid($coluna, $offset: false) {
+@function flex-item($coluna, $offset: false) {
     
     // pega a coluna que foi passada, por exemplo, 5 e divide pelo total de colunas 12 e depois multiplica por 100% para dar a porcentagem que o grid deverá ocupar na tela
     $width: $coluna / $colunas * 100%; // +% não deixa por isso foi deixado 100%
@@ -65,40 +65,39 @@ $small-device: 480px; // tamanho pequeno que seria mais em celulares
 // Classes do grid
 
 @for $i from 1 through $colunas { // fazendo um for que irá começar de 1 e irá até 12
-    .grid-#{$i} { // criando os grid-1, grid-2, grid-3
-        width: grid($i); // o tamanho dele será gerado automática pela função acima
+    .flex-item-#{$i} { // criando os grid-1, grid-2, grid-3
+        //width: grid($i); // o tamanho dele será gerado automática pela função acima
+        flex: 0 0 flex-item($i); // aqui irá criar o flex: grow 0 shrink 0 e o basis será o cálculo feito pela função flex-item que irá definir o tamanho que irá ocupar na tela, nesse caso sempre o flex-item irá estar dentro do flex-container que é dislay flex, por isso o flex-item será literalmente um flex-item
     }
 }
 
 // Mixin do gutter do grid 
 
-@mixin estrutura-grid {
-    //display: flex; /* será usado o flexbox ao invés de float */
-    //flex-wrap: wrap; /* quando não couber irá quebrar linha */
-    // não será usado o flexbox, pq se não pede o sentido do grid e também de seguir o contéudo do curso
+@mixin estrutura-flex { // aqui será definido as margens que serão utilizadas nos elementos
+   
     //float: left;
     min-height: 1px; /* colocando min-heigth, pois algumas propriedades precisam ter um mínimo de altura para funcionarem corretamente não quebrarem o layout */
     margin-left: $gutter / 2;
     margin-right: $gutter / 2;
 
     @include d(s) { // para celular
-        width: 100%;
+        //max-width: 100%;
         //float: none;
-        flex-direction: column; /* no mobile só será usado uma única coluna */
+        //flex-direction: column; /* no mobile só será usado uma única coluna */
         margin-right: 0;
         margin-left: 0;
     }
 }
 
-[class^="grid-"] { /* seletor que seleciona todas as classes do css que começam com grid-, caso colocasse alt selecionaria todas imagens que têm alt */
-    @include estrutura-grid; // chamado o mixin da estrutura do grid
+[class^="flex-item-"] { /* seletor que seleciona todas as classes do css que começam com flex-item-, caso colocasse alt selecionaria todas imagens que têm alt */
+    @include estrutura-flex; // chamado o mixin da estrutura do grid
 }
 
 // Classes do offset
-
+/* O Offset irá pegar certinho o espaço entre os elementos que ficar desajustado e irá adicionar mais o gutter para ficar alinhado o conteúdo corretamente */
 @for $i from 1 through $colunas { // fazendo um for que irá começar de 1 e irá até 12
     .offset-#{$i} { // criando os offset-1, offset-2, offset-3
-        margin-left: grid($i, offset); // o tamanho dele será gerado automática pela função acima
+        margin-left: flex-item($i, offset); // o tamanho dele será gerado automática pela função acima
         @extend %offset; // será gerado com offset-1, offset-2, pois sempre que usa o extend ele vai adicionando uma virgula quando usado várias vezes, por exemplo no laço de repetição
     }
 }
@@ -112,20 +111,20 @@ $small-device: 480px; // tamanho pequeno que seria mais em celulares
 
 // Mixin de clearfix - não será usado
 
-@mixin clearfix {
+/*@mixin clearfix {
     &::after, &::before {
         content: '';
         display: table;
         clear: both;
     }
-}
+}*/
 
 // Mixin do container 
 
 @mixin flex-container {
     display: flex; /* será usado o flexbox ao invés de float */
     flex-wrap: wrap; /* quando não couber irá quebrar linha */
-    // não será usado o flexbox, pq senão irá perder todo o sentido de usar o grid, pura mentira, dá para utilizar
+    
     max-width: $large-device; // 1200px
     margin: 0 auto; // sempre estará alinhado ao centro do container
     //position: relative;
@@ -135,6 +134,7 @@ $small-device: 480px; // tamanho pequeno que seria mais em celulares
     }
 
     @include d(s) {
+        flex-direction: column; // visual será em colunas, diferente do padrão que é linha do flexbox
         max-width: $small-device; // 480px
         padding-left: 10px;
         padding-right: 10px;
@@ -149,9 +149,12 @@ $small-device: 480px; // tamanho pequeno que seria mais em celulares
 }
 
 // Mixin de linha
-
-@mixin flex-row { // ainda será avaliado a utilização de row para ficar a margem correta quando colocar grid dentro de grid, talvez não seja necessário por estar usando o flexbox
+/* quando eu tiver flex-item dentro de flex-item será adicionado as margens automaticamente, porém eu não irei querer isso, pois irá desalinhar todo o conteúdo, por isso será subtraído a margem que já foi adicionada */
+@mixin flex-row {
     //position: relative;
+    display: flex; // conforme for fazendo o desenvolvimento irei verificar a necessidade
+    /* é necessário o display flex, pois quando estiver dentro de um flex-item e for adicionar mais flex-items será necessário tirar a margem adicional que será colocada e também ele precisa pegar o tamanho do pai como padrão é não o do flex-item padrão, por isso é necessário que tenha um display flex, como não é possível adicionar o flex-container, pois quebraria o layout todo, por isso é adcionado o row como display flex */
+    flex-wrap: wrap;
     margin-right: -$gutter / 2;
     margin-left: -$gutter / 2;
     @include d(s) {
@@ -161,12 +164,7 @@ $small-device: 480px; // tamanho pequeno que seria mais em celulares
     //@include clearfix;
 }
 
-.row {
+.flex-row {
     @include flex-row;
 }
 
-div {
-    background: rgba(0, 0, 0, .4);
-    min-height: 100px !important;
-    margin-bottom: 20px;
-}
