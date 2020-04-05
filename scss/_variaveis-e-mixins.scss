@@ -37,4 +37,11 @@ $fonte-secundaria: 'Aref Ruqaa', serif;
     }
 }
 
+@mixin box-shadow($shadow...) { // significa que o valor passado pode ser maior que uma linha
+    -moz-box-shadow: $shadow;
+    -webkit-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+
 

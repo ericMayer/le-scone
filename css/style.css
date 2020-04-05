@@ -145,13 +145,6 @@ a {
   }
 }
 
-/*@mixin clearfix {
-    &::after, &::before {
-        content: '';
-        display: table;
-        clear: both;
-    }
-}*/
 .flex-container {
   display: flex;
   /* será usado o flexbox ao invés de float */
@@ -337,16 +330,15 @@ p {
 }
 
 .cardapio {
-  margin-top: 120px;
-  margin-bottom: 120px;
-  /* não é usado margin: 120px 0px, pois irá desalinhar o flex-container, pois irá tirar as margens da direita e esquerda */
+  margin-top: 100px;
+  margin-bottom: 40px;
+  /* não é usado margin: 120px 0px, pois irá desalinhar o flex-container, pois irá tirar as margens da direita e esquerda, é possível usar, porém precisaria manter o auto para a direita e a esquerda */
 }
 
 @media only screen and (max-width: calc(760px - 1px)) {
   .cardapio {
     /* celular */
-    margin-top: 60px;
-    margin-bottom: 60px;
+    margin-top: 40px;
   }
 }
 
@@ -354,6 +346,12 @@ p {
   margin-bottom: 60px;
   position: relative;
   /* definindo position para poder usar no img position absolute e não pegar como referência o body */
+}
+
+@media only screen and (max-width: calc(760px - 1px)) {
+  .cardapio-prato {
+    margin-bottom: 40px;
+  }
 }
 
 .cardapio-prato h2 {
@@ -409,7 +407,99 @@ p {
 @media only screen and (max-width: calc(760px - 1px)) {
   .cardapio-prato img {
     position: unset;
-    margin-top: 10px;
-    margin-bottom: 10px;
   }
+}
+
+.contato {
+  margin-bottom: 60px;
+  /* não é usado margin: 120px 0px, pois irá desalinhar o flex-container, pois irá tirar as margens da direita e esquerda, é possível usar, porém precisaria manter o auto para a direita e a esquerda */
+}
+
+.contato form label {
+  font-family: "PT Mono", monospace;
+  font-size: 1.125em;
+  line-height: 1.66667em;
+  display: block;
+}
+
+.contato form input[type="text"], .contato form input[type="email"], .contato form textarea {
+  /* selecionando todos os inputs que são do tipo texte e e-mail */
+  font-family: "PT Mono", monospace;
+  font-size: 1.125em;
+  line-height: 1.66667em;
+  color: #2a2426;
+  padding: 0 10px;
+  /* para texto não ficar colado */
+  width: 100%;
+  height: 40px;
+  background-color: transparent;
+  /* transparente */
+  border: 2px solid #988c77;
+  margin-bottom: 1.4em;
+}
+
+.contato form input[type="text"]:hover, .contato form input[type="text"]:focus, .contato form input[type="email"]:hover, .contato form input[type="email"]:focus, .contato form textarea:hover, .contato form textarea:focus {
+  /* focus é quando fica selecionado a caixa de input e fica o azul */
+  outline: none;
+  /* tirando o azul que fica por padrão */
+  border-color: #cbc6b9;
+}
+
+.contato form textarea {
+  resize: none;
+  /* opção que deixa o textarea ser aumentado de tamanho */
+  height: 120px;
+  /* aumentando tamanho do textarea */
+}
+
+.contato-quebra {
+  flex-direction: column;
+  /* transformando a direction em coluna para o input de email e telefone ficar em linhas separadas, não foi adicionado no flex-row, pois da maior flexibilidade no site assim */
+}
+
+input.button {
+  /* todo input que tiver a classe button */
+  font-family: "PT Mono", monospace;
+  font-size: 1.125em;
+  line-height: 1.66667em;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: #988c77;
+  border: 2px solid #988c77;
+  display: block;
+  width: 200px;
+  padding: 5px 0px;
+  cursor: pointer;
+  /* irá ficar um ponteiro quando passar o mouse no botão */
+  /* usando duas sombras do mesmo tamanho, porém uma está com -2px do tamanho que ela pegaria, por isso é possível preencher com uma cor é dar a impressão de uma moldura */
+  -moz-box-shadow: 5px 5px 0 -2px #cbc6b9, 5px 5px 0 0 #988c77;
+  -webkit-box-shadow: 5px 5px 0 -2px #cbc6b9, 5px 5px 0 0 #988c77;
+  box-shadow: 5px 5px 0 -2px #cbc6b9, 5px 5px 0 0 #988c77;
+}
+
+input.button:hover {
+  transition: 3s;
+  /* tempo da animação, no caso o hover, para que se feita a 
+        transição */
+  /* quando passar o mouse por cima irá encolher a sombra */
+  -moz-box-shadow: 3px 3px 0 -2px #cbc6b9, 3px 3px 0 0 #988c77;
+  -webkit-box-shadow: 3px 3px 0 -2px #cbc6b9, 3px 3px 0 0 #988c77;
+  box-shadow: 3px 3px 0 -2px #cbc6b9, 3px 3px 0 0 #988c77;
+}
+
+.contato-info {
+  color: #988c77;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.contato-mapa {
+  display: block;
+  -moz-box-shadow: 0 0 0 10px #cbc6b9;
+  -webkit-box-shadow: 0 0 0 10px #cbc6b9;
+  box-shadow: 0 0 0 10px #cbc6b9;
+}
+
+.contato-mapa img {
+  width: 100%;
 }
