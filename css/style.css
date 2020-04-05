@@ -15,10 +15,6 @@ a {
   /* tirando o sublinhado dos links */
 }
 
-h1, h2 {
-  font-weight: normal;
-}
-
 /* margem da esquerda e direita */
 /* Box Sizing */
 *, *::before, *::after {
@@ -253,12 +249,12 @@ p {
 }
 
 .introducao {
-  margin: 60px 0;
+  margin-top: 60px;
 }
 
 @media only screen and (max-width: calc(760px - 1px)) {
   .introducao {
-    margin: 40px 0;
+    margin-top: 40px;
   }
 }
 
@@ -338,4 +334,82 @@ p {
 
 .introducao-foto {
   border: 10px solid #cbc6b9;
+}
+
+.cardapio {
+  margin-top: 120px;
+  margin-bottom: 120px;
+  /* não é usado margin: 120px 0px, pois irá desalinhar o flex-container, pois irá tirar as margens da direita e esquerda */
+}
+
+@media only screen and (max-width: calc(760px - 1px)) {
+  .cardapio {
+    /* celular */
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+}
+
+.cardapio-prato {
+  margin-bottom: 60px;
+  position: relative;
+  /* definindo position para poder usar no img position absolute e não pegar como referência o body */
+}
+
+.cardapio-prato h2 {
+  font-family: "Aref Ruqaa", serif;
+  font-size: 1.5em;
+  line-height: 1.25em;
+  margin-bottom: 1em;
+}
+
+.cardapio-prato li {
+  font-family: "PT Mono", monospace;
+  font-size: 1.125em;
+  line-height: 1.66667em;
+  line-height: 1.94444em;
+}
+
+.cardapio-prato li span {
+  font-family: "Aref Ruqaa", serif;
+  color: #988c77;
+  display: inline-block;
+  /* por padrão span é inline */
+  width: 70px;
+  margin-right: 10px;
+  text-align: left;
+  margin-left: -80px;
+  /* essa margem para o conteúdo ficar alinhado a esquerda deve ser negativo e deve ser a soma do margin-right e do width */
+}
+
+@media only screen and (max-width: calc(760px - 1px)) {
+  .cardapio-prato li span {
+    /* celular */
+    width: auto;
+    /* se deixar 70px não irá ter espaço no mobile e irá quebrar o visual */
+    margin-left: 0px;
+    /* para não quebrar o grid */
+  }
+}
+
+.cardapio-prato img {
+  border-radius: 50%;
+  border: 10px solid #cbc6b9;
+  position: absolute;
+  margin-top: 5px;
+  right: 150px;
+}
+
+@media only screen and (min-width: 760px) and (max-width: calc(1200px - 1px)) {
+  .cardapio-prato img {
+    right: 0px;
+  }
+}
+
+@media only screen and (max-width: calc(760px - 1px)) {
+  .cardapio-prato img {
+    position: unset;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }

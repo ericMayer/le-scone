@@ -1,0 +1,64 @@
+.cardapio {
+    margin-top: 120px;
+    margin-bottom: 120px;
+    /* não é usado margin: 120px 0px, pois irá desalinhar o flex-container, pois irá tirar as margens da direita e esquerda */
+    @include d(s) { /* celular */
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+}
+
+.cardapio-prato {
+    margin-bottom: 60px;
+    position: relative; /* definindo position para poder usar no img position absolute e não pegar como referência o body */
+
+    h2 {
+        @include tipo-2(24);
+        margin-bottom: 1em;
+    }
+    
+    li {
+        @include tipo-1(18);
+        line-height: em(35, 18);
+
+        span {
+            font-family: $fonte-secundaria;
+            color: $cor-texto;
+            display: inline-block; /* por padrão span é inline */
+            width: 70px;
+            margin-right: 10px;
+            text-align: left;
+            margin-left: -80px; /* essa margem para o conteúdo ficar alinhado a esquerda deve ser negativo e deve ser a soma do margin-right e do width */
+            @include d(s) { /* celular */
+                width: auto; /* se deixar 70px não irá ter espaço no mobile e irá quebrar o visual */
+                margin-left: 0px; /* para não quebrar o grid */
+            }
+        }
+    }
+}
+
+.cardapio-prato img {
+    
+    border-radius: 50%;
+    border: 10px solid $cor-moldura;
+
+    position: absolute;
+    
+    margin-top: 5px;
+    right: 150px;
+
+    @include d(m) {
+        right: 0px;
+    }
+
+    @include d(s) {
+        position: unset;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        
+    }
+
+   
+    
+    
+}

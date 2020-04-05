@@ -1,7 +1,7 @@
 .introducao {
-    margin: 60px 0;
+    margin-top: 60px;
     @include d(s) {
-        margin: 40px 0;
+        margin-top: 40px;
     }
 }
 
