@@ -35,7 +35,9 @@
 }
 
 .contato-quebra {
-    flex-direction: column; /* transformando a direction em coluna para o input de email e telefone ficar em linhas separadas, não foi adicionado no flex-row, pois da maior flexibilidade no site assim */
+    @include d(s) { /* celular */
+        flex-direction: column; /* transformando a direction em coluna para o input de email e telefone ficar em linhas separadas, não foi adicionado no flex-row, pois da maior flexibilidade no site assim */
+    }
 }
 
 input.button { /* todo input que tiver a classe button */
@@ -64,8 +66,8 @@ input.button { /* todo input que tiver a classe button */
 
 .contato-info {
     color: $cor-texto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .contato-mapa {

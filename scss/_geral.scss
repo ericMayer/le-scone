@@ -25,16 +25,21 @@ p {
         margin-bottom: 40px;
     }
 
-    &::after {
+    &::after { /* ______________________________ seta que irá ficar ao lado dos menu e contato */
         content: '';
         display: block;
-        float: right;
+        float: right; /* flutuando a direita */
+        
         width: 75%;
         height: 2px;
         background: $cor-texto-e-linhas;
-        margin-top: 13px;
+        margin-top: 14px;
         @include d(m) {
             width: 60%;
+        }
+
+        @include d(s) {
+            float: none;
         }
     }
 }

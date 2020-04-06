@@ -1,0 +1,12 @@
+.rodape {
+    background-color: $cor-texto-e-linhas;
+    padding: 20px 0;
+    p {
+        color: $cor-principal;
+        flex: 1;
+        
+        @include d(s) {
+            margin-bottom: 20px;
+        }
+    }
+}

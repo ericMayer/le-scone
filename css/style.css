@@ -226,18 +226,26 @@ p {
 }
 
 .titulo::after {
+  /* ______________________________ seta que irá ficar ao lado dos menu e contato */
   content: '';
   display: block;
   float: right;
+  /* flutuando a direita */
   width: 75%;
   height: 2px;
   background: #2a2426;
-  margin-top: 13px;
+  margin-top: 14px;
 }
 
 @media only screen and (min-width: 760px) and (max-width: calc(1200px - 1px)) {
   .titulo::after {
     width: 60%;
+  }
+}
+
+@media only screen and (max-width: calc(760px - 1px)) {
+  .titulo::after {
+    float: none;
   }
 }
 
@@ -452,9 +460,12 @@ p {
   /* aumentando tamanho do textarea */
 }
 
-.contato-quebra {
-  flex-direction: column;
-  /* transformando a direction em coluna para o input de email e telefone ficar em linhas separadas, não foi adicionado no flex-row, pois da maior flexibilidade no site assim */
+@media only screen and (max-width: calc(760px - 1px)) {
+  .contato-quebra {
+    /* celular */
+    flex-direction: column;
+    /* transformando a direction em coluna para o input de email e telefone ficar em linhas separadas, não foi adicionado no flex-row, pois da maior flexibilidade no site assim */
+  }
 }
 
 input.button {
@@ -489,8 +500,8 @@ input.button:hover {
 
 .contato-info {
   color: #988c77;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .contato-mapa {
@@ -502,4 +513,20 @@ input.button:hover {
 
 .contato-mapa img {
   width: 100%;
+}
+
+.rodape {
+  background-color: #2a2426;
+  padding: 20px 0;
+}
+
+.rodape p {
+  color: #edece4;
+  flex: 1;
+}
+
+@media only screen and (max-width: calc(760px - 1px)) {
+  .rodape p {
+    margin-bottom: 20px;
+  }
 }
